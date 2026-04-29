@@ -45,10 +45,6 @@ project-launcher/
 4. **Simplicite.** Le framework le plus simple qui fonctionne. Pas de tooling inutile.
 5. **Iteration.** Le framework s'ameliore a chaque sprint, comme le produit.
 
-## Origine
-
-Cree par Les Pilotes a partir du projet Skill Tracker (suivi de competences pour jeunes en formation). Le framework a ete extrait et generalise pour etre reutilisable sur n'importe quel projet.
-
 ---
 
-*Derniere mise a jour : 2026-04-17*
+*Derniere mise a jour : 2026-04-29*
