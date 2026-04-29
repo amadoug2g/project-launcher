@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Launcher — Setup</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+
+  <!-- Step 1: Guided onboarding -->
+  <section id="step-onboarding" class="step active">
+    <div class="container">
+      <div class="progress-bar">
+        <div class="progress-fill" id="onboarding-progress"></div>
+      </div>
+
+      <div id="question-container">
+        <!-- Questions rendered by onboarding.js -->
+      </div>
+
+      <div class="voice-toggle">
+        <button class="btn-icon" id="voice-btn" onclick="toggleVoice()" title="Answer by voice">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
+          <span id="voice-label">Answer by voice</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 2: GitHub connection -->
+  <section id="step-github" class="step">
+    <div class="container">
+      <h2>Connect GitHub</h2>
+      <p>We'll create the project repo on your account. Your token stays in memory — we never store it.</p>
+
+      <div class="token-instructions">
+        <p>Create a Personal Access Token with <strong>repo</strong> scope:</p>
+        <ol>
+          <li>Go to GitHub → Settings → Developer settings → Personal access tokens</li>
+          <li>Generate new token (classic)</li>
+          <li>Select scope: <code>repo</code></li>
+          <li>Copy and paste below</li>
+        </ol>
+        <a class="link-external" href="https://github.com/settings/tokens/new?scopes=repo&description=project-launcher" target="_blank" rel="noopener">
+          Open GitHub token page →
+        </a>
+      </div>
+
+      <div class="input-group">
+        <label for="github-token">GitHub Personal Access Token</label>
+        <input type="password" id="github-token" placeholder="ghp_..." autocomplete="off" />
+        <button class="btn-secondary" onclick="verifyToken()">Verify</button>
+      </div>
+
+      <div id="github-status" class="status-message"></div>
+    </div>
+  </section>
+
+  <!-- Step 3: Recap + customization -->
+  <section id="step-recap" class="step">
+    <div class="container">
+      <h2>Review your project</h2>
+      <p>Everything can be adjusted before we create the repo.</p>
+
+      <div id="recap-content">
+        <!-- Rendered by generator.js -->
+      </div>
+
+      <div class="customization">
+        <h3>Agent models</h3>
+        <div class="model-grid">
+          <div class="model-row">
+            <label>Manager (weekly strategist)</label>
+            <select id="model-manager">
+              <option value="claude-opus-4-6">claude-opus-4-6 (recommended)</option>
+              <option value="claude-sonnet-4-6">claude-sonnet-4-6</option>
+            </select>
+          </div>
+          <div class="model-row">
+            <label>Coder (daily implementer)</label>
+            <select id="model-coder">
+              <option value="claude-sonnet-4-6">claude-sonnet-4-6 (recommended)</option>
+              <option value="claude-opus-4-6">claude-opus-4-6</option>
+              <option value="claude-haiku-4-5-20251001">claude-haiku-4-5 (fastest)</option>
+            </select>
+          </div>
+          <div class="model-row">
+            <label>Reviewer</label>
+            <select id="model-reviewer">
+              <option value="claude-sonnet-4-6">claude-sonnet-4-6 (recommended)</option>
+              <option value="claude-opus-4-6">claude-opus-4-6</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="repo-name">Repository name</label>
+        <input type="text" id="repo-name" placeholder="my-project" />
+      </div>
+
+      <div class="routine-limits">
+        <p class="hint">
+          Routine limits: 5/day (Pro) · 15/day (Max) · 25/day (Team/Enterprise)
+          <button class="info-btn" onclick="toggleRoutineInfo()" aria-label="More info on routine limits">?</button>
+        </p>
+        <div id="routine-info-panel" class="info-panel" style="display:none;">
+          Routines draw down subscription usage limits in the same way as interactive sessions.
+          Pro users can run up to 5 routines per day, Max users up to 15, and Team/Enterprise users up to 25.
+          You can run extra routines beyond these limits with extra usage.
+          <a href="https://support.anthropic.com/en/articles/10166555-creating-and-managing-routines-in-claude-ai" target="_blank" rel="noopener">See the docs →</a>
+        </div>
+      </div>
+
+      <button class="btn-primary" onclick="generateProject()">Create project</button>
+    </div>
+  </section>
+
+  <!-- Step 4: Generation -->
+  <section id="step-generating" class="step">
+    <div class="container centered">
+      <h2>Creating your project...</h2>
+
+      <div class="progress-steps" id="generation-steps">
+        <div class="gen-step" id="gen-1">
+          <span class="gen-icon">○</span>
+          <span>Creating GitHub repository</span>
+        </div>
+        <div class="gen-step" id="gen-2">
+          <span class="gen-icon">○</span>
+          <span>Setting up agent configurations</span>
+        </div>
+        <div class="gen-step" id="gen-3">
+          <span class="gen-icon">○</span>
+          <span>Initializing project memory</span>
+        </div>
+        <div class="gen-step" id="gen-4">
+          <span class="gen-icon">○</span>
+          <span>Generating roadmap & architecture</span>
+        </div>
+        <div class="gen-step" id="gen-5">
+          <span class="gen-icon">○</span>
+          <span>Pushing to GitHub</span>
+        </div>
+      </div>
+
+      <div id="generation-error" class="error-message" style="display:none;"></div>
+    </div>
+  </section>
+
+  <!-- Step 5: Routine setup -->
+  <section id="step-routines" class="step">
+    <div class="container">
+      <h2>Activate your routines</h2>
+      <p>Two routines, 2 minutes to set up. You only do this once.</p>
+
+      <div class="routine-card">
+        <div class="routine-header">
+          <span class="routine-badge">1</span>
+          <h3>Weekly Manager</h3>
+          <span class="routine-schedule">Every Monday</span>
+        </div>
+        <div class="routine-config">
+          <p>Go to <a href="https://claude.ai/settings/routines" target="_blank" rel="noopener">claude.ai/settings/routines</a> → New routine</p>
+          <div class="config-block">
+            <p><strong>Name:</strong> <code id="routine-1-name"></code></p>
+            <p><strong>Schedule:</strong> Every Monday at 11:00 AM (your timezone)</p>
+            <p><strong>Repository:</strong> <code id="routine-1-repo"></code></p>
+            <p><strong>Instructions:</strong></p>
+            <pre id="routine-1-instructions"></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="routine-card">
+        <div class="routine-header">
+          <span class="routine-badge">2</span>
+          <h3>Daily Dev Loop</h3>
+          <span class="routine-schedule">Weekdays</span>
+        </div>
+        <div class="routine-config">
+          <p>Create a second routine in the same settings page</p>
+          <div class="config-block">
+            <p><strong>Name:</strong> <code id="routine-2-name"></code></p>
+            <p><strong>Schedule:</strong> Weekdays at 12:00 PM (your timezone)</p>
+            <p><strong>Repository:</strong> <code id="routine-2-repo"></code></p>
+            <p><strong>Instructions:</strong></p>
+            <pre id="routine-2-instructions"></pre>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-primary" onclick="nextStep()">My routines are active</button>
+    </div>
+  </section>
+
+  <!-- Step 6: Done -->
+  <section id="step-done" class="step">
+    <div class="container centered">
+      <div class="success-icon">✓</div>
+      <h2>Your project is live.</h2>
+      <p id="done-next-run"></p>
+
+      <div class="done-links">
+        <a id="done-repo-link" class="btn-secondary" href="#" target="_blank" rel="noopener">View repo on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/main.js"></script>
+  <script src="js/onboarding.js"></script>
+  <script src="js/github.js"></script>
+  <script src="js/generator.js"></script>
+</body>
+</html>
