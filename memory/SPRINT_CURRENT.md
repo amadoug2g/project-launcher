@@ -6,13 +6,13 @@
 
 ## Objectifs
 
-- [ ] Landing page hero section (valeur, CTA, 3 étapes)
-- [ ] Landing page features + prérequis + footer
+- [x] Landing page hero section (valeur, CTA, 3 étapes)
+- [x] Landing page features + prérequis + footer
 - [ ] Wizard : redesign complet step-by-step (dark, clean)
 - [ ] Wizard : étape routines avec redirect claude.ai/code/routines
 - [ ] Wizard : voice input Whisper opérationnel
 - [ ] Impeccable audit sur toutes les pages UI
-- [ ] src/app.html séparé de src/index.html (landing vs wizard)
+- [x] src/app.html séparé de src/index.html (landing vs wizard)
 - [ ] GitHub Pages fonctionnel + CI/CD stable
 
 ## Definition of Done
