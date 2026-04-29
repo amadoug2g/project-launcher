@@ -136,7 +136,16 @@
       </div>
 
       <div class="routine-limits">
-        <p class="hint">Claude routine limits: 5/day (Free) · 10/day (Pro) · 25/day (Team/Enterprise)</p>
+        <p class="hint">
+          Routine limits: 5/day (Pro) · 15/day (Max) · 25/day (Team/Enterprise)
+          <button class="info-btn" onclick="toggleRoutineInfo()" aria-label="More info on routine limits">?</button>
+        </p>
+        <div id="routine-info-panel" class="info-panel" style="display:none;">
+          Routines draw down subscription usage limits in the same way as interactive sessions.
+          Pro users can run up to 5 routines per day, Max users up to 15, and Team/Enterprise users up to 25.
+          You can run extra routines beyond these limits with extra usage.
+          <a href="https://support.anthropic.com/en/articles/10166555-creating-and-managing-routines-in-claude-ai" target="_blank" rel="noopener">See the docs →</a>
+        </div>
       </div>
 
       <button class="btn-primary" onclick="generateProject()">Create project</button>

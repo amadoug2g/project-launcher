@@ -50,6 +50,11 @@ function goToStep(stepId) {
   showStep(stepId);
 }
 
+function toggleRoutineInfo() {
+  const panel = document.getElementById('routine-info-panel');
+  if (panel) panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+
 // ---- Init ----
 
 document.addEventListener('DOMContentLoaded', () => {

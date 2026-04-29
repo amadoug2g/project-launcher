@@ -500,6 +500,41 @@ pre {
   margin-bottom: 4px;
 }
 
+.info-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--border);
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  margin-left: 6px;
+  vertical-align: middle;
+  line-height: 1;
+  transition: background 0.15s, color 0.15s;
+}
+
+.info-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.info-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
 /* ---- Generation steps ---- */
 
 .progress-steps {
