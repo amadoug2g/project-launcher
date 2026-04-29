@@ -68,23 +68,15 @@ feature/{{DATE_SLUG}}-{{OBJECTIVE_SLUG}}
 
 Hard rule: one objective per entry. Never plan more than one.
 
-## Step 5 — Commit and push
+## Step 5 — Push memory files to main
 
-Commit only memory files (never source code):
-```
-gh auth setup-git
-git add memory/
-git commit -m "chore(memory): weekly planning — {{DATE}}"
-git push origin main
+Use the GitHub API script (bypasses the cloud git proxy):
+```bash
+bash scripts/gh-push.sh main "chore(memory): weekly planning — {{DATE}}" \
+  memory/DAILY_GOAL.md memory/SESSION_LOG.md memory/SPRINT_CURRENT.md
 ```
 
-If `git push` still fails with 403, write the file directly via GitHub API:
-```
-gh api repos/{{REPO_OWNER}}/{{REPO_NAME}}/contents/memory/SESSION_LOG.md \
-  --method PUT \
-  --field message="chore(memory): weekly planning — {{DATE}}" \
-  --field content="$(base64 -w0 memory/SESSION_LOG.md)"
-```
+Push only the files you actually modified. Do not push files you haven't changed.
 
 ## Constraints
 

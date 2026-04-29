@@ -52,17 +52,19 @@ Never commit directly to main.
 Run the project's test/build command (see ARCHITECTURE.md for the right command).
 Never commit with failing tests or a broken build.
 
-## Step 5 — Commit and push
+## Step 5 — Push files to GitHub
 
-Use conventional commit prefixes: `feat:`, `fix:`, `ci:`, `docs:`, `refactor:`, `test:`
+**Do not use `git push`** — the cloud proxy blocks it. Use the GitHub API script instead:
 
 ```bash
-git add <specific files>
-git commit -m "feat: <what was done>"
-git push origin <branch-name>
+# Push source/code files to the feature branch
+bash scripts/gh-push.sh <branch-name> "feat: <what was done>" <file1> <file2> ...
+
+# Push memory files separately
+bash scripts/gh-push.sh <branch-name> "chore(memory): coder summary" memory/CODER_SUMMARY.md memory/LESSONS_LEARNED.md
 ```
 
-Never use `git add .` or `git add -A` without reviewing what's staged.
+List only files you actually created or modified. The script creates the remote branch if it doesn't exist.
 
 ## Step 6 — Write CODER_SUMMARY.md
 

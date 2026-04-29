@@ -39,22 +39,19 @@ Evaluate on 5 dimensions:
 
 1. Update `memory/SESSION_LOG.md` — mark objective complete
 2. Update `memory/SPRINT_CURRENT.md` — check off completed items
-3. Commit memory files to the feature branch:
+3. Push memory files to the feature branch (use API, not git push):
    ```bash
-   gh auth setup-git
-   git add memory/SESSION_LOG.md memory/SPRINT_CURRENT.md
-   git commit -m "chore(memory): reviewer approval {{DATE}}"
-   git push origin <branch>
+   bash scripts/gh-push.sh <branch> "chore(memory): reviewer approval" \
+     memory/SESSION_LOG.md memory/SPRINT_CURRENT.md
    ```
-4. Create a PR (squash merge strategy):
+4. Create a PR and merge (squash):
    ```bash
    gh pr create --title "<objective>" --body "..." --base main
    gh pr merge --squash --delete-branch
    ```
 5. **Delete the feature branch** after merge — always, no exceptions:
    ```bash
-   git push origin --delete <branch-name>
-   git branch -d <branch-name>
+   gh api repos/{{REPO_OWNER}}/{{REPO_NAME}}/git/refs/heads/<branch-name> --method DELETE
    ```
 6. Confirm in SESSION_LOG.md that branch was deleted.
 
