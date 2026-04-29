@@ -72,9 +72,18 @@ Hard rule: one objective per entry. Never plan more than one.
 
 Commit only memory files (never source code):
 ```
+gh auth setup-git
 git add memory/
 git commit -m "chore(memory): weekly planning — {{DATE}}"
 git push origin main
+```
+
+If `git push` still fails with 403, write the file directly via GitHub API:
+```
+gh api repos/{{REPO_OWNER}}/{{REPO_NAME}}/contents/memory/SESSION_LOG.md \
+  --method PUT \
+  --field message="chore(memory): weekly planning — {{DATE}}" \
+  --field content="$(base64 -w0 memory/SESSION_LOG.md)"
 ```
 
 ## Constraints

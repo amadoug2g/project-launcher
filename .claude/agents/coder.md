@@ -24,6 +24,7 @@ Read in this order:
 ## Step 2 — Branch setup
 
 ```bash
+gh auth setup-git
 git checkout main
 git pull origin main
 ```

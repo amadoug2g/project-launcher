@@ -41,6 +41,7 @@ Evaluate on 5 dimensions:
 2. Update `memory/SPRINT_CURRENT.md` — check off completed items
 3. Commit memory files to the feature branch:
    ```bash
+   gh auth setup-git
    git add memory/SESSION_LOG.md memory/SPRINT_CURRENT.md
    git commit -m "chore(memory): reviewer approval {{DATE}}"
    git push origin <branch>
