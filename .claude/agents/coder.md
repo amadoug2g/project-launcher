@@ -44,6 +44,8 @@ Never commit directly to main.
 - Run tests if available — fix failures before continuing
 - Do not create unnecessary files
 
+**For any UI/frontend work:** use `/impeccable shape` before coding to plan the UX, and `/impeccable audit` after implementing to check against DESIGN.md and PRODUCT.md. Avoid generic AI design patterns — reference DESIGN.md for this project's aesthetic direction.
+
 ## Step 4 — Validate
 
 Run the project's test/build command (see ARCHITECTURE.md for the right command).
