@@ -33,6 +33,6 @@ Contrôles effectués :
 - Références scripts dans app.html : main.js, onboarding.js, github.js, generator.js — tous présents dans src/js/. PASS.
 - Aucun secret hardcodé, pas de pattern non sécurisé. PASS.
 
-PR créée et mergée (squash). Branche `feature/20260429-landing-page` supprimée.
+PR #1 créée et mergée (squash) dans `main`. Branche `feature/20260429-landing-page` supprimée du remote.
 
 _Les sessions suivantes seront loguées ici par le reviewer après chaque merge._
