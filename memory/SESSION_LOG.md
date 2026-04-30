@@ -20,4 +20,19 @@
 
 ---
 
+## Reviewer — 29 avril 2026
+
+**Objectif :** Landing page `src/index.html` + split wizard dans `src/app.html`
+
+**Résultat : APPROUVE (LGTM)**
+
+Contrôles effectués :
+- `src/index.html` : landing page pure (hero, how it works x3, features x4, prerequisites, footer). Aucun wizard. CTA pointe vers `app.html`. PASS.
+- `src/app.html` : wizard complet avec les 6 step IDs requis (step-onboarding, step-github, step-recap, step-generating, step-routines, step-done). PASS.
+- `src/js/main.js` : STEPS = ['onboarding','github','recap','generating','routines','done'] — pas de 'landing'. Guard `if (document.getElementById('step-onboarding'))` présent sur DOMContentLoaded. PASS.
+- Références scripts dans app.html : main.js, onboarding.js, github.js, generator.js — tous présents dans src/js/. PASS.
+- Aucun secret hardcodé, pas de pattern non sécurisé. PASS.
+
+PR #1 créée et mergée (squash) dans `main` (commit 08785ae). Memory files (SESSION_LOG, SPRINT_CURRENT) poussés sur main via GitHub API. Branche remote `feature/20260429-landing-page` supprimée — confirmé (seul `main` reste sur le remote). Branche locale non supprimable (worktree actif) — sans conséquence.
+
 _Les sessions suivantes seront loguées ici par le reviewer après chaque merge._

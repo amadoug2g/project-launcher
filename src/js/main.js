@@ -1,7 +1,7 @@
 // ---- State ----
 
 const state = {
-  currentStep: 'landing',
+  currentStep: 'onboarding',
   projectData: {
     name: '',
     description: '',
@@ -25,7 +25,8 @@ const state = {
   }
 };
 
-const STEPS = ['landing', 'onboarding', 'github', 'recap', 'generating', 'routines', 'done'];
+// Steps for app.html (wizard). index.html is a static landing page.
+const STEPS = ['onboarding', 'github', 'recap', 'generating', 'routines', 'done'];
 
 // ---- Navigation ----
 
@@ -58,6 +59,9 @@ function toggleRoutineInfo() {
 // ---- Init ----
 
 document.addEventListener('DOMContentLoaded', () => {
-  showStep('landing');
-  initOnboarding();
+  // Only initialise wizard state when running in app.html
+  if (document.getElementById('step-onboarding')) {
+    showStep('onboarding');
+    initOnboarding();
+  }
 });
